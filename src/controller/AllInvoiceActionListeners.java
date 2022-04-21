@@ -30,8 +30,8 @@ import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import view.InvoiceHeaderDialog;
-import view.InvoiceLineDialog;
+import view.InvoiceHDialog;
+import view.InvoiceLDialog;
 import view.InvoiceUI;
 
 /**
@@ -41,11 +41,11 @@ import view.InvoiceUI;
 public class AllInvoiceActionListeners implements ActionListener{
 
   private InvoiceUI Myframe;
-  private InvoiceHeaderDialog hDialog;
-  private InvoiceLineDialog lDialog;
+  private InvoiceHDialog hDialog;
+  private InvoiceLDialog lDialog;
     
-  public AllInvoiceActionListeners(InvoiceUI frame){
-      this.Myframe = frame;
+  public AllInvoiceActionListeners(InvoiceUI Myframe){
+      this.Myframe = Myframe;
   }
 
     @Override
@@ -188,14 +188,14 @@ public class AllInvoiceActionListeners implements ActionListener{
     }
 /***************************************************************/
     private void CreateNewInvoiceAction() {
-        hDialog = new InvoiceHeaderDialog(Myframe);
+        hDialog = new InvoiceHDialog(Myframe);
         hDialog.setVisible(true);
     }
     private void clickOkayForNewInvoiceAdded() {
         hDialog.setVisible(false);
         
-        String customerName = hDialog.getCustNameField().getText();
-        String givenNewDate = hDialog.getInvDateField().getText();
+        String customerName = hDialog.getCustomerNameField().getText();
+        String givenNewDate = hDialog.getInvoiceDateField().getText();
         
        
       java.util.Date new_Date = new java.util.Date();         
@@ -239,14 +239,14 @@ public class AllInvoiceActionListeners implements ActionListener{
     }
 /***************************************************************/
     private void SaveAction() {
-        lDialog = new InvoiceLineDialog(Myframe);
+        lDialog = new InvoiceLDialog(Myframe);
         lDialog.setVisible(true);
     }
     private void lineDialogOk() {
         lDialog.setVisible(false);
-        String item_name = lDialog.getItemNameField().getText();
-        String item_count = lDialog.getItemCountField().getText();
-        String item_cost = lDialog.getItemPriceField().getText();
+        String item_name = lDialog.getNameOfItemField().getText();
+        String item_count = lDialog.getQuantityOfItemField().getText();
+        String item_cost = lDialog.getCostOfItemFiled().getText();
         
         int count = 1;
         double cost = 1.0;
